@@ -58,9 +58,13 @@ func main() {
 	// Register all routes
 	router.SetRouter(server)
 
+	// Default to port 3000 instead of upstream default; override with PORT env var
 	var port = os.Getenv("PORT")
 	if port == "" {
 		port = strconv.Itoa(*common.Port)
+		if port == "0" {
+			port = "3000"
+		}
 	}
 
 	common.SysLog(fmt.Sprintf("server started on http://localhost:%s", port))
