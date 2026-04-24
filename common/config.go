@@ -16,7 +16,7 @@ var (
 var (
 	ServerAddress = "0.0.0.0"
 	ServerPort    = 3000
-	GinMode       = "debug"
+	GinMode       = "release" // changed from "debug" - safer default for personal deployment
 )
 
 // Database configuration
@@ -40,22 +40,22 @@ var (
 
 // Security configuration
 var (
-	SessionSecret  = "new-api-secret"
-	CryptoSecret   = ""
-	RootUserEmail  = ""
-	RootUserName   = "root"
-	RootUserPwd    = "123456"
+	SessionSecret = "new-api-secret"
+	CryptoSecret  = ""
+	RootUserEmail = ""
+	RootUserName  = "root"
+	RootUserPwd   = "123456"
 )
 
 // System configuration
 var (
-	SystemName        = "New API"
-	SystemLogo        = ""
-	FooterHTML        = ""
-	HomePageContent   = ""
-	Theme             = "default"
-	EnableSwagger     = false
-	DebugEnabled      = false
+	SystemName      = "New API"
+	SystemLogo      = ""
+	FooterHTML      = ""
+	HomePageContent = ""
+	Theme           = "default"
+	EnableSwagger   = false
+	DebugEnabled    = false
 )
 
 // Rate limiting
@@ -66,8 +66,8 @@ var (
 
 // Billing configuration
 var (
-	QuotaPerUnit       = 500 * 1000.0 // $1 = 500k tokens by default
-	InitialRootToken   = ""
+	QuotaPerUnit     = 500 * 1000.0 // $1 = 500k tokens by default
+	InitialRootToken = ""
 )
 
 var mu sync.RWMutex
