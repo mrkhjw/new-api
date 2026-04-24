@@ -39,7 +39,8 @@ func main() {
 	// Initialize Redis (optional)
 	err = common.InitRedisClient()
 	if err != nil {
-		common.SysError("failed to initialize Redis: " + err.Error())
+		// Redis is optional; log the error but continue startup
+		common.SysLog("Redis not available, running without cache: " + err.Error())
 	}
 
 	// Initialize options from database
