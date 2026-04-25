@@ -116,4 +116,10 @@ func LoadConfigFromEnv() {
 	if v := os.Getenv("DEBUG"); v == "true" || v == "1" {
 		DebugEnabled = true
 	}
+	// Allow overriding the global rate limit via env - handy for local dev
+	if v := os.Getenv("GLOBAL_API_RATE_LIMIT"); v != "" {
+		if n, err := strconv.Atoi(v); err == nil && n > 0 {
+			GlobalApiRateLimitNum = n
+		}
+	}
 }
