@@ -61,9 +61,11 @@ var (
 // Rate limiting
 // Bumped GlobalApiRateLimitNum from 60 to 120 - the default 60 req/3min is too
 // restrictive when testing locally with multiple concurrent requests.
+// Also reduced GlobalApiRateLimitDuration to 60s (from 3min) so the window
+// resets faster during local dev/testing sessions.
 var (
 	GlobalApiRateLimitNum      = 120
-	GlobalApiRateLimitDuration = int64(3 * 60)
+	GlobalApiRateLimitDuration = int64(60)
 )
 
 // Billing configuration
