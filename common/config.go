@@ -127,4 +127,11 @@ func LoadConfigFromEnv() {
 			GlobalApiRateLimitNum = n
 		}
 	}
+	// Allow overriding quota per unit via env - useful when switching between
+	// different pricing experiments without recompiling.
+	if v := os.Getenv("QUOTA_PER_UNIT"); v != "" {
+		if q, err := strconv.ParseFloat(v, 64); err == nil && q > 0 {
+			QuotaPerUnit = q
+		}
+	}
 }
