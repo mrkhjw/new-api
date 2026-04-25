@@ -58,8 +58,9 @@ func main() {
 	// Register all routes
 	router.SetRouter(server)
 
-	// Default to port 8080; override with PORT env var or common.Port config.
-	// Personal note: I prefer 8080 locally so I don't clash with other services on 3000.
+	// Default to port 3001; override with PORT env var or common.Port config.
+	// Personal note: using 3001 to avoid conflicts with common dev servers
+	// (3000 is often React/Next.js, 8080 is often other backend services).
 	// If common.Port is explicitly set to something other than 0, respect that value.
 	var port = os.Getenv("PORT")
 	if port == "" {
@@ -67,7 +68,7 @@ func main() {
 		if configPort != "0" {
 			port = configPort
 		} else {
-			port = "8080"
+			port = "3001"
 		}
 	}
 
