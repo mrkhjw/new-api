@@ -62,6 +62,7 @@ func main() {
 	// Personal note: using 3001 to avoid conflicts with common dev servers
 	// (3000 is often React/Next.js, 8080 is often other backend services).
 	// If common.Port is explicitly set to something other than 0, respect that value.
+	// Fallback chain: PORT env var -> common.Port config -> default (3001)
 	var port = os.Getenv("PORT")
 	if port == "" {
 		configPort := strconv.Itoa(*common.Port)
@@ -73,6 +74,7 @@ func main() {
 	}
 
 	common.SysLog(fmt.Sprintf("server started on http://localhost:%s", port))
+	fmt.Printf("\n  ➜  Local: http://localhost:%s\n\n", port)
 
 	if err := server.Run(":" + port); err != nil {
 		common.FatalLog("failed to start HTTP server: " + err.Error())
