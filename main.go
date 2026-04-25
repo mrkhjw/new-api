@@ -58,12 +58,15 @@ func main() {
 	// Register all routes
 	router.SetRouter(server)
 
-	// Default to port 3000 instead of upstream default; override with PORT env var
-	// Personal note: I prefer 8080 locally so I don't clash with other services on 3000
+	// Default to port 8080; override with PORT env var or common.Port config.
+	// Personal note: I prefer 8080 locally so I don't clash with other services on 3000.
+	// If common.Port is explicitly set to something other than 0, respect that value.
 	var port = os.Getenv("PORT")
 	if port == "" {
-		port = strconv.Itoa(*common.Port)
-		if port == "0" {
+		configPort := strconv.Itoa(*common.Port)
+		if configPort != "0" {
+			port = configPort
+		} else {
 			port = "8080"
 		}
 	}
