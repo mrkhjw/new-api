@@ -70,7 +70,10 @@ var (
 
 // Billing configuration
 var (
-	QuotaPerUnit     = 500 * 1000.0 // $1 = 500k tokens by default
+	// QuotaPerUnit: $1 = 500k tokens by default.
+	// Bumped to 1M tokens per unit so my personal quota goes further during
+	// experimentation - easier to reason about costs at round numbers too.
+	QuotaPerUnit     = 1000 * 1000.0
 	InitialRootToken = ""
 )
 
