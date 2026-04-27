@@ -74,7 +74,9 @@ func main() {
 	}
 
 	common.SysLog(fmt.Sprintf("server started on http://localhost:%s", port))
-	fmt.Printf("\n  ➜  Local: http://localhost:%s\n\n", port)
+	// Print a slightly more informative startup banner with the version
+	fmt.Printf("\n  ➜  Local:   http://localhost:%s\n", port)
+	fmt.Printf("  ➜  Version: %s\n\n", common.Version)
 
 	if err := server.Run(":" + port); err != nil {
 		common.FatalLog("failed to start HTTP server: " + err.Error())
